@@ -11,6 +11,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 a,
 a:visited,
 a:hover {
@@ -42,6 +46,7 @@ body.noscroll {
   padding: 0 15px;
   margin: 0 auto;
   height: 100%;
+  overflow: hidden;
 }
 
 .style-btn {
@@ -124,6 +129,139 @@ body.noscroll {
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
   bottom: 0;
+}
+
+.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  background-color: #0b0d17;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  -webkit-transition: all 0.6s ease;
+  -o-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+
+.loading.ready {
+  opacity: 0;
+}
+
+.loading.hidden {
+  display: none;
+}
+
+.loading .box {
+  width: 300px;
+  height: 300px;
+  background: #1a237e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+          box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.container-loading {
+  height: 15px;
+  width: 105px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
+.container-loading .circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  -webkit-animation: move 500ms linear 0ms infinite;
+          animation: move 500ms linear 0ms infinite;
+  margin-right: 30px;
+}
+
+.container-loading .circle:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: grow 500ms linear 0ms infinite;
+          animation: grow 500ms linear 0ms infinite;
+}
+
+.container-loading .circle:last-child {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 0;
+  animation: grow 500ms linear 0s infinite reverse;
+}
+
+@-webkit-keyframes grow {
+  from {
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@keyframes grow {
+  from {
+    -webkit-transform: scale(0, 0);
+            transform: scale(0, 0);
+    opacity: 0;
+  }
+
+  to {
+    -webkit-transform: scale(1, 1);
+            transform: scale(1, 1);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes move {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+
+  to {
+    -webkit-transform: translateX(45px);
+            transform: translateX(45px);
+  }
+}
+
+@keyframes move {
+  from {
+    -webkit-transform: translateX(0px);
+            transform: translateX(0px);
+  }
+
+  to {
+    -webkit-transform: translateX(45px);
+            transform: translateX(45px);
+  }
 }
 
 .header {
@@ -692,7 +830,7 @@ body.noscroll {
 
 @media (max-width: 970px) {
   .mainscreen {
-    background-position: right;
+    background-position: center;
   }
 
   .contacts__btn {
@@ -767,15 +905,6 @@ body.noscroll {
     margin: 0;
   }
 
-  .mainscreen {
-    height: calc(100vh - 50px);
-  }
-
-  .mainscreen__wrapper {
-    padding-top: 100vh;
-    display: block;
-  }
-
   .mainscreen__info {
     max-width: 100%;
   }
@@ -784,10 +913,6 @@ body.noscroll {
     font-weight: 800;
     font-size: 48px;
     line-height: 140%;
-  }
-
-  .services {
-    padding: 100vh 0 150px 0;
   }
 
   .services__list {
